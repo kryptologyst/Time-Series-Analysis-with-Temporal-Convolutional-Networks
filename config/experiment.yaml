@@ -1,0 +1,62 @@
+# Configuration file for time series analysis experiment
+
+model:
+  # TCN parameters
+  tcn_hidden_sizes: [16, 32, 64]
+  tcn_kernel_size: 2
+  tcn_dropout: 0.2
+  
+  # LSTM parameters
+  lstm_hidden_size: 64
+  lstm_num_layers: 2
+  lstm_dropout: 0.2
+  
+  # Training parameters
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 100
+  patience: 10
+  
+  # Data parameters
+  sequence_length: 30
+  forecast_horizon: 1
+  train_ratio: 0.8
+  val_ratio: 0.1
+
+data:
+  length: 1000
+  trend_strength: 0.1
+  seasonal_period: 24
+  seasonal_strength: 0.5
+  noise_level: 0.1
+  anomaly_probability: 0.05
+  anomaly_strength: 2.0
+  random_seed: 42
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/experiment.log"
+  console_output: true
+
+experiment:
+  experiment_name: "time_series_experiment"
+  output_dir: "outputs"
+  save_models: true
+  save_predictions: true
+  save_plots: true
+  random_seed: 42
+
+visualization:
+  figsize: [12, 8]
+  dpi: 100
+  style: "seaborn-v0_8"
+  color_palette: "husl"
+  interactive: false
+
+anomaly_detection:
+  threshold_method: "iqr"
+  threshold_value: 1.5
+  window_size: 10
+  contamination: 0.1
+  random_seed: 42
